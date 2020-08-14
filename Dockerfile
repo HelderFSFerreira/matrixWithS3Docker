@@ -43,8 +43,8 @@ RUN pip install --prefix="/install" --no-warn-script-location \
 RUN pip3 install --prefix="/install" --no-warn-script-location git+https://github.com/matrix-org/synapse-s3-storage-provider.git
 
 # now install synapse and all of the python deps to /install.
-COPY synapse /synapse/synapse/
-COPY scripts /synapse/scripts/
+COPY project/synapse /synapse/synapse/
+COPY project/scripts /synapse/scripts/
 COPY MANIFEST.in README.rst setup.py synctl /synapse/
 
 RUN pip install --prefix="/install" --no-warn-script-location \
@@ -63,8 +63,8 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /install /usr/local
-COPY ./docker/start.py /start.py
-COPY ./docker/conf /conf
+COPY ./project/docker/start.py /start.py
+COPY ./project/docker/conf /conf
 
 VOLUME ["/data"]
 
