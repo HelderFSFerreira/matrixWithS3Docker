@@ -46,7 +46,7 @@ RUN pip3 install --prefix="/install" --no-warn-script-location git+https://githu
 # now install synapse and all of the python deps to /install.
 COPY project/synapse /synapse/synapse/
 COPY project/scripts /synapse/scripts/
-COPY MANIFEST.in README.rst setup.py synctl /synapse/
+COPY project/MANIFEST.in project/README.rst project/setup.py project/synctl /synapse/
 
 RUN pip install --prefix="/install" --no-warn-script-location \
         /synapse[all]
